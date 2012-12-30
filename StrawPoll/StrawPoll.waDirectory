@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<directory>
+  <user name='admin' ID='BAE429C68BE9014A9EC7CB4FDF1B5ACB' fullName=''
+        password=''/>
+  <user name='mildred' ID='25497F76149EB64C883BF953535E8DF2'
+        fullName='mildred jefferson'
+        password='370cf8eaf92a5f6c798f6c438387b8ca'/>
+  <user name='Lancelot' ID='6370281C6B32BF42880940F47D48235D'
+        fullName='Lancelot duLac'
+        password='17a9c4ed8317010c9196461a5ba279d9'/>
+  <user name='James' ID='FF1CD3BE5A0E1547B4D86700EB2C7F0B'
+        fullName='James Kildare' password='4b5edd48a6fbb5da5b26701e35f5fe57'/>
+  <group name='Admin' ID='01000000000000000000000000000000' fullName='Admin'>
+    <include user='admin' userID='BAE429C68BE9014A9EC7CB4FDF1B5ACB'/>
+  </group>
+  <group name='Debugger' ID='02000000000000000000000000000000'
+         fullName='Debugger'>
+    <include user='admin' userID='BAE429C68BE9014A9EC7CB4FDF1B5ACB'/>
+  </group>
+  <group name='Users' ID='BB5442D917479E40A0EBA6F0D3E77B63' fullName='Users'/>
+  <group name='Partners' ID='B663168AB5B1FA448063D8DA6511CE33'
+         fullName='Partners'>
+    <include user='mildred' userID='25497F76149EB64C883BF953535E8DF2'/>
+    <include user='Lancelot' userID='6370281C6B32BF42880940F47D48235D'/>
+    <include user='James' userID='FF1CD3BE5A0E1547B4D86700EB2C7F0B'/>
+  </group>
+</directory>

@@ -1,0 +1,1 @@
+﻿//ds.ElectionCalendar.all().remove();//ds.Election.all().remove();//ds.District.all().remove();//ds.Politician.all().remove();//ds.Vote.all().remove();//ds.Party.all().remove();//ds.Campaign.all().remove();//ds.Zip9.all().remove();//ds.Zip9District.all().remove();var c = ds.Campaign.all().toArray('ID');var e = ds.Election.query('campaigns.ID in :1', c);e;

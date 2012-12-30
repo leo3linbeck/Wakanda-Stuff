@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<solution>
+  <project path='./SPWidget/SPWidget.waProject' startupProject='true'/>
+  <file path='./StrawPoll.waSettings'>
+    <tag name='settings'/>
+  </file>
+  <file path='./StrawPoll.waDirectory'>
+    <tag name='directory'/>
+  </file>
+  <file path='./StrawPoll.waPerm'>
+    <tag name='permissions'/>
+  </file>
+</solution>

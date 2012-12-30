@@ -1,0 +1,1 @@
+﻿/*** @author Leo Linbeck III*/// Raw data from Zip9 import is processed here.var zips = ds.Zip9.all();for (zip in zips) {	zip.save();}

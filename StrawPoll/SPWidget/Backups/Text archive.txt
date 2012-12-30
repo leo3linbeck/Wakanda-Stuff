@@ -1,0 +1,471 @@
+
+guidedModel =
+{
+	Party :
+	{
+		methods :
+		{
+			conjure:function(name)
+			{
+				var p = ds.Party.find('name = :1', name);
+				if (p == null) {
+					p = ds.Party.createEntity();
+					p.name = name;
+					switch (name) {
+						case 'Democratic':
+							p.abbreviation = 'D';
+							break;
+						case 'Democrat':
+							p.abbreviation = 'D';
+							break;
+						case 'Republican':
+							p.abbreviation = 'R';
+							break;
+						case 'Libertarian':
+							p.abbreviation = 'L';
+							break;
+						case 'Green':
+							p.abbreviation = 'G';
+							break;
+						case 'Socialist':
+							p.abbreviation = 'S';
+							break;
+						case 'Non-Partisan':
+							p.abbreviation = 'X';
+							break;
+						case 'Constitution':
+							p.abbreviation = 'F';
+							break;
+						case 'Conservative':
+							p.abbreviation = 'C';
+							break;
+						default:
+							p.abbreviation = '';
+					}
+					p.save();
+				}
+				
+				return p;
+			}
+		}
+	},
+	Politician :
+	{
+		methods :
+		{
+			conjure:function(c, w)
+			{
+				var x = ds.Party.conjure(c.party);
+				var p = ds.Politician.find('fullName = :1 AND party.ID = :2 AND state.ID = :3', c.name, x.ID, w.state.ID);
+				if (p == null) {
+					p = ds.Politician.createEntity();
+					p.fullName = c.name;
+					p.party = x;
+					p.officialURL = c.candidateUrl;
+					p.phone = c.phone;
+					p.email = c.email;
+					p.photoURL = c.photoUrl;
+					p.orderOnBallot = c.orderOnBallot;
+					p.save();
+				}
+				
+				return p;
+			}
+		}
+	},
+	BallotMeasure :
+	{
+		methods :
+		{
+			conjure:function(c, w)
+			{
+				var b = ds.BallotMeasure.find('state.ID = :1 AND title = :2', w.state.ID, c.referendumTitle);
+				if (b == null) {
+					b = ds.BallotMeasure.createEntity();
+					b.state = w.state;
+					b.calendar = w;
+					b.type = c.type;
+					b.title = c.referendumTitle;
+					b.titleURL = c.referendumUrl;
+					b.subject = c.referendumSubtitle;
+					b.subjectURL = c.referendumUrl;
+					b.description = c.referendumSubtitle;
+					b.save();
+				}
+				
+				return b;
+			}
+		}
+	},
+	District :
+	{
+		methods :
+		{
+			conjure:function(c, s)
+			{
+				var d = ds.District.find('name = :1 and googleID = :2', c.district.name, c.district.id);
+				if (d == null) {
+					d = ds.District.createEntity();
+					d.googleID = c.district.id;
+					d.name = c.office;
+					if (c.office == 'President & Vice President') {
+						d.type = 'presidential';
+						d.state = null;
+					}
+					else if (c.office == 'U. S. Senator') {
+						d.type = 'senatorial';
+						d.state = s;
+					}
+					else {
+						d.type = c.district.scope;
+						d.state = s;
+					}
+					d.numberOfReps = c.numberElected ? c.numberElected : 1;
+					d.level = c.level;
+					d.save();
+				}
+				
+				return d;
+			}
+		}
+	},
+	ElectionCalendar :
+	{
+		methods :
+		{
+			conjure:function(w, s)
+			{
+				var c = ds.ElectionCalendar.find('googleID = :1', w.id);
+				if (c == null) {
+					c = ds.ElectionCalendar.createEntity();
+					c.googleID = w.id;
+					c.name = w.name;
+					c.state = s;
+					c.electionDay = Date.parseExact(w.electionDay, 'yyyy-mm-dd');
+					c.save();
+				}
+				
+				return c;
+			}
+		}
+	},
+	State :
+	{
+		methods :
+		{
+			conjure:function(abbr, state_array)
+			{
+				var s = ds.State.find('abbreviation = :1', abbr);
+				if (s == null) {
+					var a = state_array[abbr];
+					if (a === undefined)
+						throw ( { success: false, id: 'nullState', message: 'State could not be found' } );
+					s = ds.State.createEntity();
+					s.ID = a[0];
+					s.abbreviation = abbr;
+					s.name = a[1];
+					s.censusCode = a[0];
+					s.save();
+				}
+				
+				return s;
+			}
+		}
+	},
+	Election :
+	{
+		methods :
+		{
+			conjure:function(c, d, w)
+			{
+				var e = ds.Election.find('district.ID = :1 and calendar.ID = :2', d.ID, w.ID);
+				if (e == null) {
+					e = ds.Election.createEntity();
+					e.district = d;
+					e.calendar = w;
+					e.type = c.type;
+					e.numberOfRepsToVoteFor = c.numberVotingFor ? c.numberVotingFor : 1;
+					switch (d.type) {
+						case 'presidential':
+							e.sortLevel = 1;
+							break;
+						case 'senatorial':
+							e.sortLevel = 5;
+							break;
+						case 'congressional':
+							e.sortLevel = 10;
+							break;
+						case 'statewide':
+							e.sortLevel = 20;
+							break;
+						case 'stateUpper':
+							e.sortLevel = 30;
+							break;
+						case 'stateLower':
+							e.sortLevel = 40;
+							break;
+						case 'countywide':
+							e.sortLevel = 50;
+							break;
+						case 'countyCouncil':
+							e.sortLevel = 50;
+							break;
+						default:
+							e.sortLevel = 100;
+					}
+					e.save();
+				}
+				
+				return e;
+			}
+		},
+		numberOfCandidates :
+		{
+			onGet:function()
+			{
+				return this.campaigns.count();
+			}
+		},
+		contested :
+		{
+			onGet:function()
+			{
+				return this.campaigns.count() > this.numberOfReps;
+			}
+		}
+	},
+	Campaign :
+	{
+		methods :
+		{
+			conjure:function(e, p)
+			{
+				var c = ds.Campaign.find('politician.ID = :1 AND election.ID = :2', p.ID, e.ID);
+				if (c == null) {
+					c = ds.Campaign.createEntity();
+					c.election = e;
+					c.politician = p;
+					c.save();
+				}
+				
+				return c;
+			}
+		},
+		entityMethods :
+		{
+			personVote:function(personID)
+			{
+				return this.votes.find('person.ID = :1', personID) != null;
+			}
+		},
+		voteTotal :
+		{
+			onGet:function()
+			{
+				return this.votes.count();
+			}
+		}
+	},
+	Person :
+	{
+		entityMethods :
+		{
+			getSocialProfile:function(profile)
+			{
+				return this.profiles.find('identifier = :1', profile.identifier);
+			},
+			setCurrentSocialProfile:function(sp)
+			{
+				return this.latestSocialProfile = sp.identifier;
+			},
+			getCurrentSocialProfile:function()
+			{
+				return this.profiles.find('identifier = :1', this.latestSocialProfile);
+			}
+		},
+		methods :
+		{
+			socialSignin:function(r)
+			{
+				var p = null;
+				var profile = r.profile;
+				
+				p = ds.SocialProfile.find('identifier = :1', profile.identifier);
+				if (p == null) {
+					z = ds.Person.createEntity();
+					p = ds.SocialProfile.createEntity();
+					p.person = z;
+					p.identifier = profile.identifier;
+					p.providerName = profile.providerName;
+					p.save();
+					z.save();
+				}
+				else
+					z = p.person;
+					
+				z.setCurrentSocialProfile(p);
+				
+				try {
+					var url = 'https://rpxnow.com/api/v2/map';
+					var xhr = new XMLHttpRequest(); 
+					xhr.open('POST', url, false); // to connect to a Web site synchronously
+					xhr.setRequestHeader('Content-Type','application/json');
+					var data = { primaryKey: String(z.ID), identifier: profile.identifier, apiKey: require('janrain.api_key').janrain_api_key() };
+					xhr.send(JSON.stringify(data)); // send the request
+				} catch (e) {
+					return ( { success: false, id: 'socialMediaMappingFailed', message: 'Social media mapping failed.' } );
+				}
+										
+				if (profile.displayName) {
+					p.displayName = profile.displayName;
+					z.name = z.name ? z.name : profile.displayName;
+				}
+				
+				if (profile.preferredUsername) {
+					p.preferredUsername = profile.preferredUsername;
+					z.username = z.username ? z.username : profile.preferredUsername;
+				}
+				
+				if (profile.name) {
+					p.name = profile.name.formatted;
+					p.familyName = profile.familyName;
+					p.givenName = profile.givenName;
+					p.middleName = profile.middleName;
+					p.honorificPrefix = profile.honorificPrefix;
+					p.honorificSuffix = profile.honorificSuffix;
+				}
+				if (profile.gender)
+					p.gender = profile.gender;
+				if (profile.birthday)
+					p.birthday = profile.birthday;
+				if (profile.utcOffset)
+					p.utcOffset = profile.utcOffset;
+				if (profile.verifiedEmail) {
+					p.verifiedEmail = profile.verifiedEmail;
+					z.latestEmailAddress = z.latestEmailAddress ? z.latestEmailAddress : profile.verifiedEmail;
+				}
+				if (profile.email) {
+					p.email = profile.email;
+					z.latestEmailAddress = z.latestEmailAddress ? z.latestEmailAddress : profile.email;
+				}
+				if (profile.URL)
+					p.url = profile.URL;
+				if (profile.phoneNumber)
+					p.phoneNumber = profile.phoneNumber;
+				if (profile.address) {
+					p.address = profile.address.formatted;
+					p.streetAddress = profile.address.streetAddress;
+					p.city = profile.address.locality;
+					p.state = profile.address.region;
+					p.zip = profile.address.postalCode;
+					
+					z.address1 = z.address1 ? z.address1 : profile.address.streetAddress;
+					z.city = z.city ? z.city : profile.address.locality;
+					z.state = z.state ? z.state : profile.address.region;
+					z.zip = z.zip ? z.zip : profile.address.postalCode;
+				}
+								
+				p.save();
+				z.save();
+				z.refresh();
+
+				return z;
+
+			},
+			conjure:function(id, addr1, addr2, city, state, zip9, s, usps)
+			{
+				if (id)
+					var z = this.find('ID = :1', id);
+				else
+					var z = this.find('uspsLine1 = :1 AND uspsLine2 = :2', usps[0], usps[1]);
+				
+				if (z == null)
+					z = this.createEntity();
+					
+				z.address1 = addr1;
+				z.address2 = addr2;
+				z.city = city;
+				z.state = state;
+				z.zip9 = zip9;
+				if (usps.length) {
+					z.uspsLine1 = usps[0];
+					z.uspsLine2 = usps[1];
+				}
+				z.stateRelation = s;
+				z.save();
+				z.refresh();
+
+				return z;
+			}
+		}
+	},
+	PartnerUsers :
+	{
+		methods :
+		{
+			registration:function(vTitle, vUsername, vPassword, vFirstName, vLastName, vType)
+			{
+				// check to see if the user exists already
+				var nUser = directory.user(vUsername);
+				if (nUser != null)
+				{
+					return false;
+					};
+	
+				var newUser = directory.addUser(vUsername, vPassword, vFirstName + ' ' + vLastName);	
+				if (vType=='user'){
+					newUser.putInto('Users');
+					}
+				else if (vType='partner'){
+					newUser.putInto('Partners');
+					};
+				directory.save();
+				// new CustomUser				
+				if (typeof(vType)=='undefined'){vType='users'};
+				//debugger;
+				var vNew =   new ds.PartnerUsers({
+					title      : vTitle,
+					firstName  : vFirstName,
+					lastName   : vLastName,
+					username   : vUsername,
+					type       : vType,
+					user_id	   : directory.user(vUsername).ID,
+					password   : vPassword});
+				vNew.save();
+				return true;
+
+			},
+			RegisterPartnerUser:function()
+			{
+				//not used but cannot be deleted for some reason
+			}
+		}
+	},
+	Zip9 :
+	{
+		events :
+		{
+			onValidate:function()
+			{
+				// Add your code here
+			}
+		},
+		methods :
+		{
+			conjure:function(zip9, s)
+			{
+				
+				var z = this.find('zipCode = :1', zip9);
+				if (z == null) {
+					z = ds.Zip9.createEntity();
+					z.zipCode = zip9;
+					z.state = s;
+					z.save();
+				}
+				
+				return z;
+			}
+		}
+	}
+};
+

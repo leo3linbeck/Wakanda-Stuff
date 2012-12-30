@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html><html>
+    <head>
+        <title>DataEntry</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="generator" content="Wakanda GUIDesigner"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    	<meta name="wakanda-version" content="2.0 build 2.114832"/>
+		<meta name="wakanda-build" content="2.114832"/>
+		<meta name="WAF.config.loadCSS" id="waf-palette" content="/walib/WAF/widget/palette/css/widget-palette-default.css"/>
+		<meta data-type="dataSource" data-lib="WAF" data-source="Election" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-id="election" content="election"/>
+		<meta name="WAF.config.loadCSS" id="waf-interface-css" content="styles/DataEntry.css"/>
+		<meta name="WAF.config.loadCSS" id="waf-project-css" content="/application.css"/>
+<meta name="WAF.config.loadJS" id="waf-script" content="scripts/DataEntry.js"/>
+		<meta data-type="dataSource" data-lib="WAF" data-source="election.district" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-id="district0" content="district0"/>
+		<meta data-type="dataSource" data-lib="WAF" data-source="election.party" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-id="party0" content="party0"/>
+		<meta data-type="dataSource" data-lib="WAF" data-source="election.campaigns" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-id="campaigns" content="campaigns"/>
+</head>
+    <body id="waf-body" data-viewport-width="device-width" data-viewport-minimum-scale="1.0" data-viewport-maximum-scale="1.0" data-viewport-initial-scale="1.0" data-type="document" data-theme="default" data-platform="desktop" data-lib="WAF" data-apple-meta-tags-status-bar="default" class="default" style="visibility:hidden;">
+    	<div id="loginDataEntry" data-user-label="User: " data-user-display="Signed in as " data-type="login" data-password-label="Password: " data-logout-action="Logout" data-login-title="Login Dialog" data-login-button="Login" data-login-action="Login" data-lib="WAF" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-login default inherited    waf-login-level-0 waf-level-0 "></div>
+	
+
+					<div id="container1" data-type="container" data-lib="WAF" class="waf-widget waf-container default inherited     waf-container-level-0 waf-level-0" data-constraint-left="true" data-constraint-top="true">
+ 		<input id="textField1" data-type="textField" data-lib="WAF" type="text" data-binding="election.ID" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="ID" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label1" data-type="label" data-lib="WAF" for="textField1" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">ID</label>
+ 	
+ 		<input id="textField2" data-type="textField" data-lib="WAF" type="text" data-binding="election.year" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="year" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label2" data-type="label" data-lib="WAF" for="textField2" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">year</label>
+ 		<div id="autoForm1" data-type="autoForm" data-lib="WAF" data-binding="district0" class="waf-widget waf-autoForm default inherited     waf-autoForm-level-0 waf-level-0" data-display-error="true" data-withoutTable="true" data-resize-each-widget="true" data-resize-optimal-each-widget="true" data-column-attribute="ID,name,code,state,type,typeCode,numberOfReps,elections" data-column-name="ID,name,code,state,type,typeCode,numberOfReps,elections" data-column="[]" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 	
+ 		<input id="textField3" data-type="textField" data-lib="WAF" type="text" data-binding="election.type" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="type" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label3" data-type="label" data-lib="WAF" for="textField3" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">type</label>
+ 	
+ 		<input id="textField4" data-type="textField" data-lib="WAF" type="text" data-binding="election.day" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="day" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label4" data-type="label" data-lib="WAF" for="textField4" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">day</label>
+ 	
+ 		<input id="textField5" data-type="textField" data-lib="WAF" type="text" data-binding="election.startOfEarlyVoting" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="startOfEarlyVoting" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label5" data-type="label" data-lib="WAF" for="textField5" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">startOfEarlyVoting</label>
+ 	
+ 		<input id="textField6" data-type="textField" data-lib="WAF" type="text" data-binding="election.endOfEarlyVoting" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="endOfEarlyVoting" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label6" data-type="label" data-lib="WAF" for="textField6" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">endOfEarlyVoting</label>
+ 	
+ 		<input id="textField7" data-type="textField" data-lib="WAF" type="text" data-binding="election.filingStartDate" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="filingStartDate" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label7" data-type="label" data-lib="WAF" for="textField7" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">filingStartDate</label>
+ 	
+ 		<input id="textField8" data-type="textField" data-lib="WAF" type="text" data-binding="election.filingDeadline" class="waf-widget waf-textField default inherited    waf-textField-level-0 waf-level-0 " data-label="filingDeadline" data-label-position="left" data-multiline="false" data-password="false" data-datapicker-on="true" data-datapicker-icon-only="false" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"/>
+ 		<label id="label8" data-type="label" data-lib="WAF" for="textField8" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-textField   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">filingDeadline</label>
+ 	
+ 		<div id="checkbox1" data-type="checkbox" data-lib="WAF" type="checkbox" data-binding="election.contested" class="waf-widget waf-checkbox default inherited    waf-checkbox-level-0 waf-level-0 " data-label="contested" data-label-position="right" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 		<label id="label9" data-type="label" data-lib="WAF" for="checkbox1" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-checkbox   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">contested</label>
+ 	
+ 		<div id="checkbox2" data-type="checkbox" data-lib="WAF" type="checkbox" data-binding="election.primary" class="waf-widget waf-checkbox default inherited    waf-checkbox-level-0 waf-level-0 " data-label="primary" data-label-position="right" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 		<label id="label10" data-type="label" data-lib="WAF" for="checkbox2" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-checkbox   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">primary</label>
+ 	
+ 		<div id="checkbox3" data-type="checkbox" data-lib="WAF" type="checkbox" data-binding="election.general" class="waf-widget waf-checkbox default inherited    waf-checkbox-level-0 waf-level-0 " data-label="general" data-label-position="right" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 		<label id="label11" data-type="label" data-lib="WAF" for="checkbox3" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-checkbox   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">general</label>
+ 	
+ 		<div id="checkbox4" data-type="checkbox" data-lib="WAF" type="checkbox" data-binding="election.special" class="waf-widget waf-checkbox default inherited    waf-checkbox-level-0 waf-level-0 " data-label="special" data-label-position="right" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 		<label id="label12" data-type="label" data-lib="WAF" for="checkbox4" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-checkbox   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">special</label>
+ 	
+ 		<div id="checkbox5" data-type="checkbox" data-lib="WAF" type="checkbox" data-binding="election.runoff" class="waf-widget waf-checkbox default inherited    waf-checkbox-level-0 waf-level-0 " data-label="runoff" data-label-position="right" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 		<label id="label13" data-type="label" data-lib="WAF" for="checkbox5" data-valign="middle" data-margin="5" class="waf-widget waf-label default inherited      waf-label-checkbox   waf-label-level-0 waf-level-0 " data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">runoff</label>
+ 		<div id="autoForm2" data-type="autoForm" data-lib="WAF" data-binding="party0" class="waf-widget waf-autoForm default inherited    waf-autoForm-level-0 waf-level-0 " data-display-error="true" data-withoutTable="true" data-resize-each-widget="true" data-resize-optimal-each-widget="true" data-column-attribute="ID,name,abbreviation,politicians,elections" data-column-name="ID,name,abbreviation,politicians,elections" data-column="[]" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 		<div id="autoForm3" data-type="autoForm" data-lib="WAF" data-binding="campaigns" class="waf-widget waf-autoForm default inherited    waf-autoForm-level-0 waf-level-0 " data-display-error="true" data-withoutTable="true" data-resize-each-widget="true" data-resize-optimal-each-widget="true" data-column-attribute="ID,politician,election,votes,won,incumbent,advancedToRunoff" data-column-name="ID,politician,election,votes,won,incumbent,advancedToRunoff" data-column="[]" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false"></div>
+ 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<script type="text/javascript" src="/waLib/WAF/Loader.js"></script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+1	Democratic	D
+2	Republicane	R
+3	Libertarian	L
+4	Green	G
+5	American Independent Party	AIP
+6	Independent	I
+7		Peace and Freedom Party	PFP
+8	Constitution	C
+9	Grassroots	GR
+10	Non-Partisan	NP
+11	Reform Party	RP
+12	Independent American Party	IAP
+13	United States Marijuana Party	USMP
+14	VoteKiss	VK
+15	Peace and Prosperity	PP
+16	Americans Elect	AE
+17	Unaffiliated	UF
+18	Write-in	WR
+19	Conservative	CV
+20	Working Families Party	WFP
+21	Progressive	PR
+22	Utah Justice Party	UJP
+23	Employmentwealth Party	EP
+24	Progressive Independent Party	PIP
